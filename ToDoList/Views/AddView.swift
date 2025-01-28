@@ -9,20 +9,21 @@ import SwiftUI
 
 struct AddView: View {
 
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var listViewModel: ListViewModel
     @State var textFieldText: String = ""
 
     var body: some View {
         ScrollView {
             VStack {
+                Image(systemName: "")
                 TextField("Type something here...", text: $textFieldText)
                     .padding(.horizontal)
                     .frame(height: 55)
                     .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
                     .cornerRadius(10)
                 Button(
-                    action: {
-                        
-                    }, label: {
+                    action: saveButtonPressed, label: {
                         Text("save".uppercased())
                             .foregroundColor(.white)
                             .font(.headline)
@@ -35,6 +36,11 @@ struct AddView: View {
             .padding(14)
         }
         .navigationTitle("Add an Item 🖊️")
+    }
+    
+    func saveButtonPressed() {
+        listViewModel.addItem(title: textFieldText)
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
