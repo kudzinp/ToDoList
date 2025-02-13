@@ -11,8 +11,8 @@ struct AddView: View {
 
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var listViewModel: ListViewModel
-    @State var textFieldText: String = ""
     
+    @State var textFieldText: String = ""
     @State var alertTitle: String = ""
     @State var showAlert: Bool = false
 
